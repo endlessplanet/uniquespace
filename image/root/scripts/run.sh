@@ -2,7 +2,7 @@
 
 apk update &&
     apk upgrade &&
-    apk add --no-cache bash gpgme sudo py-pip &&
+    apk add --no-cache bash gpgme sudo py-pip core-utils &&
     cp /opt/docker/etc/sudo.txt /etc/sudoers.d/user &&
     adduser -D user &&
     mkdir /home/user/bin &&
