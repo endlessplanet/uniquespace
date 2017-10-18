@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker volume --quiet | while read VOLUME
+docker volume ls --quiet | while read VOLUME
 do
     LAST_READ=$(docker \
         container \
