@@ -11,7 +11,7 @@ do
         --workdir /volume \
         alpine:3.4 \
             find \
-            .
+            . \
             -mindepth 1) &&
         for FILE in ${FILES}
             do
