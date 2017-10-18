@@ -1,6 +1,8 @@
 #!/bin/sh
 
-docker volume ls | while read VOLUME
+docker volume ls --quiet --filter label name --filter description --filter expiry | while read VOLUME
 do
-    docker volume inspect ${VOLUME} --format "{{}}"
+    NAME="$(docker volume inspect --format \"{{.Labels.name}}\")" ${VOLUME} &&
+        DESCRIPTION="$(docker volume inspect --format \"{{.Labels.description}}\")" ${VOLUME} &&
+        EXPIRY="$(docker volume inspect --format \"{{.Labels.expiry}}\")" ${VOLUME}
 done
