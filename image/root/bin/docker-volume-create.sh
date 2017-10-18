@@ -11,8 +11,8 @@ do
             DESCRPTION="${2}" &&
                 shift 2
         ;;
-        --persistence)
-            PERSISTENCE="${3}" &&
+        --expiry)
+            EXPIRY=$(date -d "${3}") &&
                 shift 2
         ;;
     esac
@@ -22,5 +22,4 @@ done &&
         create \
         --label "name=${NAME}" \
         --label "description=${DESCRIPTION}" \
-        --label "persistence=${PERSISTENCE}" \
-        --label "tstamp=$(date +%s)"
+        --label "expiry=${EXPIRY}"
