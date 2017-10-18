@@ -8,7 +8,7 @@ do
         --interactive \
         --tty \
         --rm \
-        --mount type=volume,source=${VOLUME},destination=/volume,readonly=yes \
+        --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
         --workdir /volume \
         alpine:3.4 \
             find \
@@ -19,7 +19,7 @@ do
                     run \
                     --interactive \
                     --rm \
-                    --mount type=volume,source=${VOLUME},destination=/volume,readonly=yes \
+                    --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
                     --workdir /volume \
                     alpine:3.4 \
                         stat \
@@ -32,7 +32,7 @@ do
             --interactive \
             --tty \
             --rm \
-            --mount type=volume,source=${VOLUME},destination=/volume,readonly=yes \
+            --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
             --workdir /volume \
             alpine:3.4 \
                 find \
@@ -43,7 +43,7 @@ do
                         run \
                         --interactive \
                         --rm \
-                        --mount type=volume,source=${VOLUME},destination=/volume,readonly=yes \
+                        --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
                         --workdir /volume \
                         alpine:3.4 \
                             stat \
@@ -56,7 +56,7 @@ do
             --interactive \
             --tty \
             --rm \
-            --mount type=volume,source=${VOLUME},destination=/volume,readonly=yes \
+            --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
             --workdir /volume \
             alpine:3.4 \
                 du \
