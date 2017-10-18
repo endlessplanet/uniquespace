@@ -6,13 +6,13 @@ do
         container \
         run \
         --interactive \
-        --tty \
         --rm \
         --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
         --workdir /volume \
         alpine:3.4 \
             find \
-            . | while read FILE
+            . \
+            -mindepth 1 | while read FILE
             do
                 docker \
                     container \
@@ -24,19 +24,19 @@ do
                     alpine:3.4 \
                         stat \
                         -c %X \
-                        "${VOLUME}"
+                        "${FILE}"
             done | sort -n -r | head -n 1) &&
         LAST_WRITE=$(docker \
             container \
             run \
             --interactive \
-            --tty \
             --rm \
             --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
             --workdir /volume \
             alpine:3.4 \
                 find \
-                . | while read FILE
+                . \
+                -mindepth 1 | while read FILE
                 do
                     docker \
                         container \
@@ -48,13 +48,12 @@ do
                         alpine:3.4 \
                             stat \
                             -c %Y \
-                            "${VOLUME}"
+                            "${FILE}"
                 done | sort -n -r | head -n 1) &&
         SIZE=$(docker \
             container \
             run \
             --interactive \
-            --tty \
             --rm \
             --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
             --workdir /volume \
