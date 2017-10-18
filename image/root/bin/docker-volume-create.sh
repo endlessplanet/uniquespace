@@ -8,11 +8,11 @@ do
                 shift 2
         ;;
         --description)
-            DESCRPTION="${2}" &&
+            DESCRIPTION="${2}" &&
                 shift 2
         ;;
         --expiry)
-            EXPIRY=$(date -d "${3}" +%s) &&
+            EXPIRY=$(date -d "${2}" +%s) &&
                 shift 2
         ;;
     esac
