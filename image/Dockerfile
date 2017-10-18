@@ -1,0 +1,9 @@
+FROM docker:17.09.0
+COPY root /opt/docker/
+RUN ["sh", "/opt/docker/scripts/run.sh"]
+USER user
+RUN ["pip", "install", "awscli", "--upgrade", "--user"]
+VOLUME /home
+WORKDIR /home/user
+ENTRYPOINT ["sh", "/opt/docker/scripts/entrypoint.sh"]
+CMD []
