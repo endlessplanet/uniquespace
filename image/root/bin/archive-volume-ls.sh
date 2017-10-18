@@ -10,9 +10,9 @@ do
         --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
         --workdir /volume \
         alpine:3.4 \
-            for FILE in $(find \
+            find \
             . \
-            -mindepth 1)
+            -mindepth 1 | while read FILE
             do
                 docker \
                     container \
