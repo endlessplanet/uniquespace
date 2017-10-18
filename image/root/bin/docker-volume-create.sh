@@ -12,7 +12,7 @@ do
                 shift 2
         ;;
         --expiry)
-            EXPIRY=$(date -d "${3}") &&
+            EXPIRY=$(date -d "${3}" +%s) &&
                 shift 2
         ;;
     esac
