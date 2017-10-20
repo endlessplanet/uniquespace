@@ -6,7 +6,7 @@ docker \
     --interactive \
     --tty \
     --rm \
-    $(docker volume ls --quiet | while read VOLUME
+    $(docker volume ls --quiet | head -n 100 | while read VOLUME
         do
             echo "--mount type=volume,source=${VOLUME},destination=/srv/${VOLUME},readonly=true "
         done
