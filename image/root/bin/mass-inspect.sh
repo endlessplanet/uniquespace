@@ -11,5 +11,5 @@ docker \
             echo "--mount type=volume,source=${VOLUME},destination=/srv/${VOLUME},readonly=true "
         done
     ) \
-    endlessplanet/volume-minder:e18b759eaa0e2dae7f5a7dc8cea56491a3e795a2 \
+    endlessplanet/volume-minder:0ef07dbf735e671dbe537fed184c703e91e13fbf \
     bash
