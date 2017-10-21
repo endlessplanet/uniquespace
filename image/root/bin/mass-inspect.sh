@@ -1,6 +1,12 @@
 #!/bin/sh
 
-docker \
+(cat <<EOF
+for FILE in find /srv -mindepth 1
+do
+    stat -c "${FILE}\t%X\t%Y\t%Z" ${FILE}
+done
+EOF
+) | docker
     container \
     run \
     --interactive \
@@ -12,4 +18,4 @@ docker \
         done
     ) \
     alpine:3.4 \
-    find /srv -mindepth 1
+    sh
