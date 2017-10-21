@@ -1,12 +1,6 @@
 #!/bin/sh
 
-(cat <<EOF
-for FILE in \$(find /srv -mindepth 1)
-do
-    stat -c "%X" \${FILE}
-done
-EOF
-) | docker \
+cat /home/user/bin/inspect-files | docker \
     container \
     run \
     --interactive \
