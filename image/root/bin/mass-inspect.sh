@@ -1,16 +1,15 @@
 #!/bin/sh
 
 (cat <<EOF
-for FILE in find /srv -mindepth 1
+for FILE in \$(find /srv -mindepth 1)
 do
-    stat -c "${FILE}\t%X\t%Y\t%Z" ${FILE}
+    stat -c "%X" \${FILE}
 done
 EOF
-) | docker
+) | docker \
     container \
     run \
     --interactive \
-    --tty \
     --rm \
     $(docker volume ls --quiet | head -n 100 | while read VOLUME
         do
