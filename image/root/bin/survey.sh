@@ -4,20 +4,18 @@ LIMIT=2 &&
     echo "<survey>" &&
     docker volume ls --quiet | head -n ${LIMIT} | while read VOLUME
     do
-        docker volume inspect ${VOLUME} --format "<inspect driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name={{ .Name }}\" scope=\"{{ .Scope }}\">" &&
+        echo -n "<volume " &&
+            docker volume inspect ${VOLUME} --format "driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name={{ .Name }}\" scope=\"{{ .Scope }}\"" &&
+            cat /home/user/bin/inspect-files | docker \
+                container \
+                run \
+                --interactive \
+                --rm \
+                --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
+                alpine:3.4 \
+                sh &&
             docker volume inspect ${VOLUME} --format '{{ range $k, $v := .Labels -}} <label name="{{ $k }}" value="{{ $v }}" {{ end -}}' &&
-            echo "</inspect>"
+            echo "</inspect>" &&
+            echo "</volume>"
     done &&
-    cat /home/user/bin/inspect-files | docker \
-        container \
-        run \
-        --interactive \
-        --rm \
-        $(docker volume ls --quiet | head -n ${LIMIT} | while read VOLUME
-            do
-                echo "--mount type=volume,source=${VOLUME},destination=/srv/${VOLUME},readonly=true "
-            done
-        ) \
-        alpine:3.4 \
-        sh &&
     echo "</survey>"
