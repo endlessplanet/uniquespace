@@ -19,7 +19,6 @@ LIMIT=2 &&
             do
                 echo "<container id=\"${CONTAINER}\"/>"
             done &&
-            echo "</inspect>" &&
             echo "</volume>"
     done &&
     echo "</survey>"
