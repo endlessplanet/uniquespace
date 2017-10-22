@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LIMIT=4 &&
+LIMIT=${1} &&
     echo "<survey>" &&
     docker volume ls --quiet | head -n ${LIMIT} | while read VOLUME
     do
