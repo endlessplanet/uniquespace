@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
-        <xsl:apply-templates select="survey"/>
+        <xsl:apply-templates select="inspect"/>
     </xsl:template>
-    <xsl:template match="survey">
-        <xsl:for-each select="inspect">
-            <xsl:sort select="name"/>
+    <xsl:template match="inspect">
+        <xsl:for-each select="../file">
+            <xsl:test 
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
