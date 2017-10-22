@@ -6,14 +6,14 @@ LIMIT=${1} &&
     do
         echo -n "<volume " &&
             docker volume inspect ${VOLUME} --format "driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name=\"{{ .Name }}\" scope=\"{{ .Scope }}\"" &&
-            cat /home/user/bin/survey-instrument | docker \
-                container \
-                run \
-                --interactive \
-                --rm \
-                --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
-                alpine:3.4 \
-                sh &&
+            # cat /home/user/bin/survey-instrument | docker \
+            #     container \
+            #     run \
+            #     --interactive \
+            #     --rm \
+            #     --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
+            #     alpine:3.4 \
+            #     sh &&
             docker volume inspect ${VOLUME} --format '{{ range $k, $v := .Labels -}} <label name="{{ $k }}" value="{{ $v }}"/> {{ end -}}' &&
             docker container ls --quiet --filter volume=${VOLUME} | while read CONTAINER
             do
