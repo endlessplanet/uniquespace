@@ -2,7 +2,7 @@
 
 apk update &&
     apk upgrade &&
-    apk add --no-cache bash sudo coreutils libxslt &&
+    apk add --no-cache bash sudo coreutils libxslt nano &&
     cp /opt/docker/etc/sudo.txt /etc/sudoers.d/user &&
     adduser -D user &&
     mkdir /home/user/bin &&
