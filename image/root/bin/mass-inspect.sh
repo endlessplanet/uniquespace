@@ -4,9 +4,9 @@ LIMIT=2 &&
     echo "<survey>" &&
     docker volume ls --quiet | head -n ${LIMIT} | while read VOLUME
     do
-        docker volume inspect ${VOLUME} --format "<inspection driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name={{ .Name }}\" scope=\"{{ .Scope }}\">" &&
+        docker volume inspect ${VOLUME} --format "<inspect driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name={{ .Name }}\" scope=\"{{ .Scope }}\">" &&
             docker volume inspect ${VOLUME} --format '{{ range $k, $v := .Labels -}} <label name="{{ $k }}" value="{{ $v }}" {{ end -}}' &&
-            echo "</inspection>"
+            echo "</inspect>"
     done &&
     cat /home/user/bin/inspect-files | docker \
         container \

@@ -4,6 +4,8 @@
         <xsl:apply-templates select="survey"/>
     </xsl:template>
     <xsl:template match="survey">
-        
+        <xsl:for-each select="inspect">
+            <xsl:sort select="name"/>
+        </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
