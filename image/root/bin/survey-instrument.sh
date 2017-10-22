@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# echo -n "lastAccessed=\"" &&
-#     for FILE in $(find /volume -mindepth 1)
-#     do
-#         stat -c %X "${FILE}"
-#     done | sort -n | tail -n 1 &&
-#     echo -n "\" " &&
+echo -n "lastAccessed=\"" &&
+    for FILE in $(find /volume -mindepth 1)
+    do
+        stat -c %X "${FILE}"
+    done | sort -n | tail -n 1 &&
+    echo -n "\" " &&
     echo -n "lastModified=\"" &&
     for FILE in $(find /volume -mindepth 1)
     do
