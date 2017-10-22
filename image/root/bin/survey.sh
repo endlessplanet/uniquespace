@@ -15,6 +15,10 @@ LIMIT=2 &&
                 alpine:3.4 \
                 sh &&
             docker volume inspect ${VOLUME} --format '{{ range $k, $v := .Labels -}} <label name="{{ $k }}" value="{{ $v }}" {{ end -}}' &&
+            docker container ls --quiet --filter volume=${VOLUME} | while read CONTAINER
+            do
+                echo "<container id=\"${CONTAINER}\"/>"
+            done &&
             echo "</inspect>" &&
             echo "</volume>"
     done &&
