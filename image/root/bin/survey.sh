@@ -6,7 +6,7 @@ LIMIT=2 &&
     do
         echo -n "<volume " &&
             docker volume inspect ${VOLUME} --format "driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name={{ .Name }}\" scope=\"{{ .Scope }}\"" &&
-            cat /home/user/bin/inspect-files | docker \
+            cat /home/user/bin/survey-instrument | docker \
                 container \
                 run \
                 --interactive \
