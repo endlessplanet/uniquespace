@@ -1,0 +1,21 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:param name="expiry"/>
+    <xsl:template match="/">
+        <xsl:apply-templates select="survey"/>
+    </xsl:template>
+    <xsl:template match="survey">
+        <xsl:element name="survey">
+            <xsl:for-each select="volume">
+                <xsl:sort select="size"/>
+                <xsl:choose>
+                    <xsl:when test="@lastAccessed&lt;$expiry">
+                        <xsl:element name="volume">
+                            <xsl:apply-templates select="@*|node()" />
+                        </xsl:element>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:element>
+    </xsl:template>
+</xsl:stylesheet>
