@@ -11,7 +11,16 @@
                 <xsl:choose>
                     <xsl:when test="@lastAccessed&lt;$expiry">
                         <xsl:element name="volume">
-                            <xsl:apply-templates select="@*|node()" />
+                            <xsl:attribute name="driver" select="@driver"/>
+                            <xsl:attribute name="mountpoint" select="@mountpoint"/>
+                            <xsl:attribute name="name" select="@name"/>
+                            <xsl:attribute name="scope" select="@scope"/>
+                            <xsl:for-each select="label">
+                                <xsl:element name="label">
+                                    <xsl:attribute name="name" select="@name"/>
+                                    <xsl:attribute name="value" select="@value"/>
+                                </xsl:element>
+                            </xsl:for-each>
                         </xsl:element>
                     </xsl:when>
                 </xsl:choose>
