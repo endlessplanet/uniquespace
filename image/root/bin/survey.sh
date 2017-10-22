@@ -5,7 +5,7 @@ LIMIT=2 &&
     docker volume ls --quiet | head -n ${LIMIT} | while read VOLUME
     do
         echo -n "<volume " &&
-            docker volume inspect ${VOLUME} --format "driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name={{ .Name }}\" scope=\"{{ .Scope }}\"" &&
+            docker volume inspect ${VOLUME} --format "driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name=\"{{ .Name }}\" scope=\"{{ .Scope }}\"" &&
             cat /home/user/bin/survey-instrument | docker \
                 container \
                 run \
