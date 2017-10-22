@@ -3,7 +3,8 @@
 echo "<survey>" &&
     docker volume ls --quiet | head -n 10 | while read VOLUME
     do
-        DRIVER=$(docker volume inspect ${VOLUME} --format "<inspection driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name={{ .Name }}\" scope=\"{{ .Scope }}\">") &&
+        docker volume inspect ${VOLUME} --format "<inspection driver=\"{{ .Driver }}\" mountpoint=\"{{ .Mountpoint }}\" name={{ .Name }}\" scope=\"{{ .Scope }}\">" &&
+            docker volume inspect ${VOLUME} --format '{{ range $k, $v := .Labels -}} <label name="{{ $k }}" value="{{ $v }}" {{ end -}}' &&
             echo "</inspection>"
     done &&
     cat /home/user/bin/inspect-files | docker \
