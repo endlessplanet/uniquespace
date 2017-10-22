@@ -5,11 +5,13 @@ echo -n "lastAccessed=\"" &&
     do
         stat -c %X "${FILE}"
     done | sort -n | tail -n 1 &&
+    echo -n "\" " &&
     echo -n "lastModified=\"" &&
     find /volume -mindepth 1 | while read FILE
     do
         stat -c %Y "${FILE}"
     done | sort -n | tail -n 1 &&
+    echo -n "\" " &&
     echo -n "lastChanged=\"" &&
     find /volume -mindepth 1 | while read FILE
     do
