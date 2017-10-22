@@ -14,7 +14,7 @@ LIMIT=2 &&
                 --mount type=volume,source=${VOLUME},destination=/volume,readonly=true \
                 alpine:3.4 \
                 sh &&
-            docker volume inspect ${VOLUME} --format '{{ range $k, $v := .Labels -}} <label name="{{ $k }}" value="{{ $v }}" {{ end -}}' &&
+            docker volume inspect ${VOLUME} --format '{{ range $k, $v := .Labels -}} <label name="{{ $k }}" value="{{ $v }}"/> {{ end -}}' &&
             docker container ls --quiet --filter volume=${VOLUME} | while read CONTAINER
             do
                 echo "<container id=\"${CONTAINER}\"/>"
