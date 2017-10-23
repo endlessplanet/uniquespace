@@ -16,4 +16,7 @@ apk update &&
     mkdir /etc/docker &&
     mkdir /etc/docker/plugins &&
     cp /opt/docker/plugins/myplugin.json /etc/docker/plugins &&
+    mkdir /usr/lib/docker &&
+    mkdir /usr/lib/docker/plugins &&
+    cp /opt/docker/plugins/myplugin.json /usr/lib/docker/plugins &&
     rm -rf /var/cache/apk/*
