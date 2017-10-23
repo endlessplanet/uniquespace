@@ -13,4 +13,5 @@ apk update &&
     done &&
     chown -R user:user /home/user/bin &&
     ln -sf /home/user/bin/bashrc /home/user/.bashrc &&
+    cp /opt/docker/plugins/myplugin.json /etc/docker/plugins &&
     rm -rf /var/cache/apk/*
