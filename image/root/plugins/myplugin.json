@@ -1,0 +1,10 @@
+{
+  "Name": "myplugin",
+  "Addr": "https://fntlnz.wtf/myplugin",
+  "TLSConfig": {
+    "InsecureSkipVerify": false,
+    "CAFile": "/usr/shared/docker/certs/example-ca.pem",
+    "CertFile": "/usr/shared/docker/certs/example-cert.pem",
+    "KeyFile": "/usr/shared/docker/certs/example-key.pem",
+  }
+}
