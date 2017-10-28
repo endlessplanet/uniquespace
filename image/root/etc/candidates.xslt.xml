@@ -11,10 +11,27 @@
                 <xsl:choose>
                     <xsl:when test="@lastAccessed&lt;$expiry">
                         <xsl:element name="volume">
-                            <xsl:attribute name="driver" select="@driver"/>
-                            <xsl:attribute name="mountpoint" select="@mountpoint"/>
-                            <xsl:attribute name="name" select="@name"/>
-                            <xsl:attribute name="scope" select="@scope"/>
+                            <xsl:attribute name="driver">
+                                <xsl:value-of select="@driver"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="mountpoint">
+                                <xsl:value-of select="@mountpoint"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="@name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="scope">
+                                <xsl:value-of select="@scope"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="lastAccessed">
+                                <xsl:value-of select="@lastAccessed"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="lastModified">
+                                <xsl:value-of select="@lastAccessed"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="lastChanged">
+                                <xsl:value-of select="@lastAccessed"/>
+                            </xsl:attribute>
                             <xsl:for-each select="label">
                                 <xsl:element name="label">
                                     <xsl:attribute name="name" select="@name"/>
