@@ -9,7 +9,7 @@
             <xsl:for-each select="volume">
                 <xsl:sort select="size"/>
                 <xsl:choose>
-                    <xsl:when test="@size&lt;10">
+                    <xsl:when test="@size=4">
                         <xsl:element name="volume">
                             <xsl:attribute name="driver">
                                 <xsl:value-of select="@driver"/>
