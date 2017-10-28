@@ -1,0 +1,47 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:param name="expiry"/>
+    <xsl:template match="/">
+        <xsl:apply-templates select="survey"/>
+    </xsl:template>
+    <xsl:template match="survey">
+        <xsl:element name="survey">
+            <xsl:for-each select="volume">
+                <xsl:sort select="size"/>
+                <xsl:choose>
+                    <xsl:when test="@size&lt;10">
+                        <xsl:element name="volume">
+                            <xsl:attribute name="driver">
+                                <xsl:value-of select="@driver"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="mountpoint">
+                                <xsl:value-of select="@mountpoint"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="@name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="scope">
+                                <xsl:value-of select="@scope"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="lastAccessed">
+                                <xsl:value-of select="@lastAccessed"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="lastModified">
+                                <xsl:value-of select="@lastAccessed"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="lastChanged">
+                                <xsl:value-of select="@lastAccessed"/>
+                            </xsl:attribute>
+                            <xsl:for-each select="label">
+                                <xsl:element name="label">
+                                    <xsl:attribute name="name" select="@name"/>
+                                    <xsl:attribute name="value" select="@value"/>
+                                </xsl:element>
+                            </xsl:for-each>
+                        </xsl:element>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:element>
+    </xsl:template>
+</xsl:stylesheet>
