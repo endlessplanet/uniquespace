@@ -15,13 +15,19 @@ do
             ENTRYPOINT="${2}" &&
                 shift 2
                 ;;
-        --commmand)
+        --command)
             COMMAND="${2}" &&
                 shift 2
                 ;;
         --expiry)
             EXPIRY=$(date --date "${2}" +%s) &&
                 shift 2
+                ;;
+        *)
+            echo UNSUPPORTED OPTION &&
+                echo ${@} &&
+                exit 64
+                ;;
     esac
 done &&
     cd $(mktemp -d) &&
