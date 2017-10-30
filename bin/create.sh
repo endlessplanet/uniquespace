@@ -2,7 +2,8 @@
 
 docker \
     container \
-    run \
+    create \
+    --name uniquespace \
     --interactive \
     --tty \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
