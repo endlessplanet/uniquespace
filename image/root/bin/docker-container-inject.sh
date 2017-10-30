@@ -22,7 +22,7 @@ done &&
             SBIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/usr/local/sbin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
             SUDO=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/etc/sudoers.d\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
             sed \
-                -e "s#\${PROGRAM_NAME}#${PROGRAM_NAME}" /opt/docker/lib/inject/bin.sh | docker \
+                -e "s#\${PROGRAM_NAME}#${PROGRAM_NAME}#" /opt/docker/lib/inject/bin.sh | docker \
                 container \
                 run \
                 --interactive \
