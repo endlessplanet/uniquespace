@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker container start uniquespace
+docker container start --interactive uniquespace
