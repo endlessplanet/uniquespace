@@ -1,5 +1,4 @@
 FROM alpine:3.4
-LABEL maintainer="${MAINTAINER}" expiry="${EXPIRY}"
 RUN \
     apk update && \
     apk upgrade && \
@@ -14,3 +13,4 @@ VOLUME ["etc", "sudoers.d"]
 WORKDIR /home/user
 ENTRYPOINT ["${ENTRYPOINT}"] &&
 CMD ["${COMMAND}"]
+LABEL maintainer="${MAINTAINER}" expiry="${EXPIRY}"
