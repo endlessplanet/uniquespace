@@ -21,9 +21,9 @@ done &&
     IMAGE=$(docker-image-create-alpine --maintainer "${MAINTAINER}" --package-name bash --entrypoint bash --command "" --expiry "${EXPIRY}")
     docker \
         container \
+        create \
         --label "maintainer=${MAINTAINER}"
         --label "expiry=$(date --date ${EXPIRY})"
-        create \
         --interactive \
         --tty \
         --rm \
