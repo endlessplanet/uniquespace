@@ -39,4 +39,4 @@ done &&
             -e "s#\${COMMAND}#${COMMAND}#" \
             -e "wDockerfile" \
             /opt/docker/lib/docker/alpine/Dockerfile &&
-        docker image --quiet build .
+        docker image build --quiet .
