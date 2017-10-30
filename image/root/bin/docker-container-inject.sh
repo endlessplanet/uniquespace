@@ -20,5 +20,7 @@ done &&
     cp /opt/docker/lib/inject/user.sudo ${TEMPDIR}/user.sudo &&
     docker container ls --quiet --all --filter "label=title=${TITLE}" | while read CONTAINER
     do
-        docker container cp 
+        docker container cp ${TEMPDIR}/bin.sh ${CONTAINER}:/usr/local/bin/bin.sh &&
+        docker container cp ${TEMPDIR}/bin.sh ${CONTAINER}:/usr/local/bin/bin.sh &&
+        docker container cp ${TEMPDIR}/bin.sh ${CONTAINER}:/usr/local/bin/bin.sh &&
     done

@@ -5,4 +5,4 @@ docker-container-create-alpine \
     --maintainer "Emory Merryman" \
     --package-name bash \
     --entrypoint bash \
-    --expiry "now + 1 week"
+    --expiry "now"
