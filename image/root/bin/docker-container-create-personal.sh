@@ -22,8 +22,8 @@ done &&
     docker \
         container \
         create \
-        --label "maintainer=${MAINTAINER}"
-        --label "expiry=$(date --date ${EXPIRY})"
+        --label "maintainer=${MAINTAINER}" \
+        --label "expiry=$(date --date ${EXPIRY})" \
         --interactive \
         --tty \
         --rm \
