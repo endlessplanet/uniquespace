@@ -19,11 +19,15 @@ do
             COMMAND="${2}" &&
                 shift 2
                 ;;
+        --expiry)
+            EXPIRY=$(date --date "${2}" +%s) &&
+                shift 2
     esac
 done &&
     cd $(mktemp -d) &&
         sed \
             -e "s#\${MAINTAINER}#${MAINTAINER}#" \
+            -e "s#\${EXPIRY}#${EXPIRY}#" \
             -e "s#\${PACKAGE_NAME}#${PACKAGE_NAME}#" \
             -e "s#\${ENTRYPOINT}#${ENTRYPOINT}#" \
             -e "s#\${COMMAND}#${COMMAND}#" \

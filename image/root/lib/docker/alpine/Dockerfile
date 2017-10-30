@@ -1,5 +1,5 @@
 FROM alpine:3.4
-LABEL maintainer="${MAINTAINER}"
+LABEL maintainer="${MAINTAINER}" expiry="${EXPIRY}"
 RUN \
     apk update && \
     apk upgrade && \
