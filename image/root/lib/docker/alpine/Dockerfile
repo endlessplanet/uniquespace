@@ -1,4 +1,5 @@
 FROM alpine:3.4
+LABEL maintainer="${MAINTAINER}"
 RUN \
     apk update && \
     apk upgrade && \
