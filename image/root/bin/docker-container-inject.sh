@@ -14,13 +14,23 @@ do
                 ;;
     esac
 done &&
-    TEMPDIR=$(mktemp -d) &&
-    cp /opt/docker/lib/inject/bin.sh ${TEMPDIR}/bin.sh &&
-    cp /opt/docker/lib/inject/sbin.sh ${TEMPDIR}/sbin.sh &&
-    cp /opt/docker/lib/inject/user.sudo ${TEMPDIR}/user.sudo &&
+    PROGRAM_NAME="git" &&
     docker container ls --quiet --all --filter "label=title=${TITLE}" | while read CONTAINER
     do
-        docker container cp ${TEMPDIR}/bin.sh ${CONTAINER}:/usr/local/bin/bin.sh &&
-        docker container cp ${TEMPDIR}/bin.sh ${CONTAINER}:/usr/local/bin/bin.sh &&
-        docker container cp ${TEMPDIR}/bin.sh ${CONTAINER}:/usr/local/bin/bin.sh &&
+        HOME=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/home\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+            BIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/usr/local/bin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+            SBIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/usr/local/sbin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+            SUDO=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/etc/sudoers.d\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+            sed \
+                -e "s#\${PROGRAM_NAME}#${PROGRAM_NAME}" /opt/docker/lib/inject/bin.sh | docker \
+                container \
+                run \
+                --interactive \
+                --rm \
+                --volume ${BIN}:/usr/local/bin \
+                --workdir /usr/local/bin \
+                alpine:3.4 \
+                tee \
+                    ${PROGRAM_NAME}
+            
     done

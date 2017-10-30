@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo /usr/local/sbin/${PROGRAM} "${@}"
+sudo /usr/local/sbin/${PROGRAM_NAME}.sh "${@}"
