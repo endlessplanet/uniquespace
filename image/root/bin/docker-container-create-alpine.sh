@@ -12,7 +12,7 @@ do
                 shift 2
                 ;;
         --image)
-            IMAGE="${2}" &&
+            IMAGE="$(docker-image-ls-title ${2})" &&
                 shift 2
                 ;;
         --interactive)
@@ -43,10 +43,6 @@ done &&
     then
         echo Undefined Image &&
             exit 66
-    fi &&
-    if [ -z "${EXPIRY}" ] && [ ! -z "${DEFAULT_EXPIRY_TEMPLATE}" ]
-    then
-        EXPIRY=$(date --date "${DEFAULT_EXPIRY_TEMPLATE}" +%s)
     fi &&
     docker \
         container \

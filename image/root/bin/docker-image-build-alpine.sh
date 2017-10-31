@@ -38,7 +38,7 @@ FLAG="default" &&
                         shift 2
                         ;;
                 --expiry)
-                    EXPIRY=$(date --date "${2}" +%s) &&
+                    EXPIRY=${2} &&
                         shift 2
                         ;;
                 --entrypoint)
@@ -62,14 +62,10 @@ FLAG="default" &&
         echo Duplicate Title ${TITLE} &&
             exit 65
     done &&
-    if [ -z "${EXPIRY}" ] && [ ! -z "${DEFAULT_EXPIRY_TEMPLATE}" ]
-    then
-        EXPIRY=$(date --date "${DEFAULT_EXPIRY_TEMPLATE}" +%s)
-    fi &&
     cd $(mktemp -d) &&
         sed \
             -e "s#\${MAINTAINER}#${MAINTAINER}#" \
-            -e "s#\${EXPIRY}#${EXPIRY}#" \
+            -e "s#\${EXPIRY}#$(date --date \"${EXPIRY}\" +%s#" \
             -e "s#\${PACKAGE_NAME}#${PACKAGE_NAME}#" \
             -e "s#\${ENTRYPOINT}#${ENTRYPOINT}#" \
             -e "s#\${COMMAND}#${COMMAND}#" \
