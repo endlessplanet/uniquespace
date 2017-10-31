@@ -20,8 +20,9 @@ do
                 shift 2
                 ;;
         --command)
-            COMMAND="${2}" &&
-                shift 2
+            shift &&
+                COMMAND="${@}" &&
+                shift ${#}
                 ;;
         --expiry)
             EXPIRY="${2}" &&

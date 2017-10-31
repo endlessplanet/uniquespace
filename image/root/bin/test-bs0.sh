@@ -5,5 +5,5 @@ docker-container-create-alpine \
     --maintainer "Emory Merryman" \
     --package-name bash \
     --entrypoint echo \
-    --command "hello world" \
-    --expiry "now"
+    --expiry "now" \
+    --command 
