@@ -46,7 +46,7 @@ done &&
     fi &&
     if [ -z "${EXPIRY}" ] && [ ! -z "${DEFAULT_EXPIRY_TEMPLATE}" ]
     then
-        EXPIRY=$(date --date ${DEFAULT_EXPIRY_TEMPLATE} +%s)
+        EXPIRY=$(date --date "${DEFAULT_EXPIRY_TEMPLATE}" +%s)
     fi &&
     docker \
         container \
