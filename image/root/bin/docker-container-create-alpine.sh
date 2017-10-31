@@ -17,15 +17,15 @@ do
                 ;;
         --interactive)
             INTERACTIVE="--interactive" &&
-                shift 2
+                shift
                 ;;
         --tty)
             TTY="--tty" &&
-                shift 2
+                shift
                 ;;
         --rm)
             RM="--rm" &&
-                shift 2
+                shift
                 ;;
         *)
             echo UNSUPPORTED OPTION &&
