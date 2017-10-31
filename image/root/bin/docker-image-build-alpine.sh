@@ -60,5 +60,6 @@ FLAG="default" &&
             -e "s#\${PACKAGE_NAME}#${PACKAGE_NAME}#" \
             -e "s#\${ENTRYPOINT}#${ENTRYPOINT}#" \
             -e "s#\${COMMAND}#${COMMAND}#" \
+            -e "s#\${TITLE}#${TITLE}#" \
             /opt/docker/lib/docker/alpine/Dockerfile > Dockerfile 2>&1 &&
         docker image build --quiet .
