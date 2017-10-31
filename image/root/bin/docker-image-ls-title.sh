@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker image ls --filter --quiet "label=title=${@}"
+docker image ls --quiet --filter "label=title=${@}"
