@@ -25,6 +25,10 @@ FLAG="default" &&
                 shift
         else
             case ${1} in
+                --title)
+                    TITLE="${2}" &&
+                        shift 2
+                        ;;
                 --maintainer)
                     MAINTAINER="${2}" &&
                         shift 2
