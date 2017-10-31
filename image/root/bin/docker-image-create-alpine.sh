@@ -1,35 +1,57 @@
 #!/bin/sh
 
+FLAG="default" &&
 while [ ${#} -gt 0 ]
 do
-    case ${1} in
-        --maintainer)
-            MAINTAINER="${2}" &&
-                shift 2
-                ;;
-        --package-name)
-            PACKAGE_NAME="${2}" &&
-                shift 2
-                ;;
-        --entrypoint)
-            ENTRYPOINT="${2}" &&
-                shift 2
-                ;;
-        --command)
-            shift &&
-                COMMAND="${@}" &&
-                shift ${#}
-                ;;
-        --expiry)
-            EXPIRY=$(date --date "${2}" +%s) &&
-                shift 2
-                ;;
-        *)
-            echo UNSUPPORTED OPTION &&
-                echo ${@} &&
-                exit 64
-                ;;
-    esac
+    if [ "${FLAG}" == "entrypoint" ] && [ "${1}" == "--command" ]
+    then
+        shift &&
+            FLAG="command"
+    elif [ "${FLAG}" == "entrypoint" ] && [ "${1}" != "--command" ] && [ -z "${ENTRYPOINT}" ]
+    then
+        ENTRYPOINT="\"${1}\"" &&
+            shift
+    elif [ "${FLAG}" == "entrypoint" ] && [ "${1}" != "--command" ] && [ ! -z "${ENTRYPOINT}" ]
+    then
+        ENTRYPOINT=", \"${1}\"" &&
+            shift
+    elif [ "${FLAG}" == "command" ] && [ -z "${COMMAND}" ]
+    then
+        COMMAND="\"${1}\"" &&
+            shift
+    elif [ "${FLAG}" == "command" ] && [ ! -z "${COMMAND}" ]
+    then
+        COMMAND=", \"${1}\"" &&
+            shift
+    else
+        case ${1} in
+            --maintainer)
+                MAINTAINER="${2}" &&
+                    shift 2
+                    ;;
+            --package-name)
+                PACKAGE_NAME="${2}" &&
+                    shift 2
+                    ;;
+            --expiry)
+                EXPIRY=$(date --date "${2}" +%s) &&
+                    shift 2
+                    ;;
+            --entrypoint)
+                shift &&
+                    FLAG="entrypoint"
+                    ;;
+            --command)
+                shift &&
+                    FLAG="command"
+                    ;;
+            *)
+                echo UNSUPPORTED OPTION &&
+                    echo ${@} &&
+                    exit 64
+                    ;;
+        esac
+    fi
 done &&
     cd $(mktemp -d) &&
         sed \
