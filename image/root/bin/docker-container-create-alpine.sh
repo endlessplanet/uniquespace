@@ -15,6 +15,10 @@ do
             PACKAGE_NAME="${2}" &&
                 shift 2
                 ;;
+        --expiry)
+            EXPIRY="${2}" &&
+                shift 2
+                ;;
         --entrypoint)
             ENTRYPOINT="${2}" &&
                 shift 2
@@ -23,10 +27,6 @@ do
             shift &&
                 COMMAND="${@}" &&
                 shift ${#}
-                ;;
-        --expiry)
-            EXPIRY="${2}" &&
-                shift 2
                 ;;
         *)
             echo UNSUPPORTED OPTION &&
