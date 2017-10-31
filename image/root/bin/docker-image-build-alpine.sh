@@ -61,6 +61,11 @@ FLAG="default" &&
     then
         EXPIRY=$(date --date ${DEFAULT_EXPIRY_TEMPLATE} +%s)
     fi &&
+    if [ ! -z "$(docker image ls --quiet --filter label=title=\"${TITLE}\")" ]
+    then
+        echo Duplicate Title ${TITLE} &&
+            exit 65
+    fi &&
     cd $(mktemp -d) &&
         sed \
             -e "s#\${MAINTAINER}#${MAINTAINER}#" \
