@@ -8,5 +8,6 @@ docker \
     --tty \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
     --env DISPLAY \
-    --env MAINTAINER \
+    --env-file public.env.sh \
+    --env-file private.env.sh \
     endlessplanet/uniquespace:$(git rev-parse --verify HEAD)
