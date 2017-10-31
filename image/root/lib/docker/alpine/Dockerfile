@@ -8,6 +8,6 @@ RUN \
 USER user
 VOLUME ["/home", "/usr/local/bin", "/usr/local/sbin", "/etc/sudoers.d"]
 WORKDIR /home/user
-ENTRYPOINT ["${ENTRYPOINT}"] &&
-CMD ["${COMMAND}"]
+ENTRYPOINT [${ENTRYPOINT}] &&
+CMD [${COMMAND}]
 LABEL maintainer="${MAINTAINER}" expiry="${EXPIRY}"
