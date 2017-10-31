@@ -1,3 +1,3 @@
 #!/bin/sh
 
-export MAINTAINER="Emory Merryman <emory.merryman@gmail.com>"
+MAINTAINER="Emory Merryman <emory.merryman@gmail.com>"
