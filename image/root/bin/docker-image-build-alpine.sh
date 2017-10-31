@@ -57,6 +57,10 @@ FLAG="default" &&
             esac
         fi
     done &&
+    if [ -z "${EXPIRY}" ] && [ ! -z "${DEFAULT_EXPIRY_TEMPLATE}" ]
+    then
+        EXPIRY=$(date --date ${DEFAULT_EXPIRY_TEMPLATE} +%s)
+    fi &&
     cd $(mktemp -d) &&
         sed \
             -e "s#\${MAINTAINER}#${MAINTAINER}#" \
