@@ -1,6 +1,21 @@
 #!/bin/sh
 
-docker container ls --all --quiet --filter label=title=${TITLE} | while read CONTAINER
+while [ ${#} -gt 0 ]
 do
-    docker container start --interactive ${CONTAINER}
-done
+    case ${1} in
+        --title)
+            TITLE=$(docker-container-ls-title "${2}") &&
+                shift 2
+        ;;
+        --interactive)
+            shift &&
+                INTERACTIVE="--interactive"
+        ;;
+        *)
+            echo Unknown Option &&
+                echo ${@} &&
+                exit 64
+        ;;
+    esac
+done &&
+    docker container start ${INTERACTIVE} ${TITLE}
