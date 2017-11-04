@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker-image-build-alpine --title pass --package-name pass --entrypoint pass --command &&
+docker-image-build-fedora --title pass --package-name pass --entrypoint pass --command &&
     docker-image-build-alpine --title gpgme --package-name gpg --entrypoint gpg --command &&
     docker-image-build-alpine --title findutils --package-name findutils --entrypoint find --command &&
     docker-container-create --title pass --image pass &&
