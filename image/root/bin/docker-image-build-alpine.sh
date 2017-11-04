@@ -65,7 +65,7 @@ FLAG="default" &&
     cd $(mktemp -d) &&
         sed \
             -e "s#\${MAINTAINER}#${MAINTAINER}#" \
-            -e "s#\${EXPIRY}#$(date --date \"${EXPIRY}\" +%s#)" \
+            -e "s#\${EXPIRY}#$(date --date \"${EXPIRY}\" +%s)#" \
             -e "s#\${PACKAGE_NAME}#${PACKAGE_NAME}#" \
             -e "s#\${ENTRYPOINT}#${ENTRYPOINT}#" \
             -e "s#\${COMMAND}#${COMMAND}#" \
