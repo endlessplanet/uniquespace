@@ -66,7 +66,7 @@ FLAG="default" &&
         EXPIRY_DATE=$(date --date "${EXPIRY}" +%s) &&
         sed \
             -e "s#\${MAINTAINER}#${MAINTAINER}#" \
-            -e "s#\${EXPIRY}#$(date --date \"${EXPIRY_DATE}\" +%s)#" \
+            -e "s#\${EXPIRY}#${EXPIRY_DATE}#" \
             -e "s#\${PACKAGE_NAME}#${PACKAGE_NAME}#" \
             -e "s#\${ENTRYPOINT}#${ENTRYPOINT}#" \
             -e "s#\${COMMAND}#${COMMAND}#" \

@@ -12,7 +12,7 @@ do
                 shift 2
                 ;;
         --image)
-            IMAGE="$(docker-image-ls-title ${2})" &&
+            IMAGE="$(docker-image-ls-title --title ${2})" &&
                 shift 2
                 ;;
         --interactive)
