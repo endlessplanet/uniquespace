@@ -6,21 +6,25 @@ do
         --program-name)
             PROGRAM_NAME="${2}" &&
                 shift 2
-                ;;
+        ;;
         --title)
             TITLE="${2}" &&
                 shift 2
-                ;;
+        ;;
         --container)
             shift &&
                 CONTAINER="${@}" &&
                 shift ${#}
-                ;;
+        ;;
+        --image)
+            IMAGE=$(docker-image-ls-title --title "${2}") &&
+                shift 2
+        ;;
         *)
             echo Unknown Option &&
                 echo ${@} &&
                 exit 64
-                ;;
+        ;;
     esac
 done &&
     docker container ls --quiet --all --filter "label=title=${TITLE}" | while read CONTAINER
@@ -59,7 +63,7 @@ done &&
 
 CIDFILE=\$(mktemp) &&
     rm -f \${CIDFILE} &&
-    docker container create --cidfile \${CIDFILE} ${CONTAINER} &&
+    docker container create --cidfile \${CIDFILE} ${CONTAINER} ${IMAGE} &&
     docker container start \${CIDFILE} &&
     rm -f \${CIDFILE}
 EOF
