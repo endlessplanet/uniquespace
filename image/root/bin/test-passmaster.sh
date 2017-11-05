@@ -6,4 +6,4 @@ docker-image-build-fedora --title pass --package-name pass --entrypoint pass --c
     docker-container-create --title pass --image pass &&
     docker-container-create --title gpgme --image gpgme &&
     docker-container-create --title findutils --image findutils &&
-    docker-container-inject --title pass --image findutils
+    docker-container-inject-run --title pass --image findutils
