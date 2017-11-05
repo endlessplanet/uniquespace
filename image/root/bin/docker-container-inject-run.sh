@@ -51,7 +51,7 @@ done &&
                 run \
                 --interactive \
                 --rm \
-                --volume ${BIN}:/etc/sudoers.d \
+                --volume ${SUDO}:/etc/sudoers.d \
                 --workdir /etc/sudoers.d \
                 alpine:3.4 \
                 tee \
