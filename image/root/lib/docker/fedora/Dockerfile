@@ -1,6 +1,7 @@
 FROM fedora:26
 RUN \
     dnf update --assumeyes && \
+    dnf install --assumeyes sudo && \
     dnf install --assumeyes "${PACKAGE_NAME}" && \
     adduser user && \
     dnf update --assumeyes && \
