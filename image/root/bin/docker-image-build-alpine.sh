@@ -63,9 +63,7 @@ FLAG="default" &&
             exit 65
     done &&
     cd $(mktemp -d) &&
-        echo EXPIRY_DATE=\$\(date --date "${EXPIRY}" +%s\) &&
         EXPIRY_DATE=$(date --date "${EXPIRY}" +%s) &&
-        echo ${EXPIRY_DATE} &&
         sed \
             -e "s#\${MAINTAINER}#${MAINTAINER}#" \
             -e "s#\${EXPIRY}#${EXPIRY_DATE}#" \
