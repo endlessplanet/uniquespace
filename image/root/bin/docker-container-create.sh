@@ -48,6 +48,7 @@ done &&
         container \
         create \
         --label expiry=$(date --date "${EXPIRY}" +%s) \
+        --mount source=/var/run/docker.sock,destination=/var/run/docker.sock,readonly=true \
         --label "title=${TITLE}" \
         ${INTERACTIVE} \
         ${TTY} \
