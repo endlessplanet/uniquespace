@@ -11,14 +11,14 @@ do
             TITLE="${2}" &&
                 shift 2
         ;;
-        --container)
-            shift &&
-                CONTAINER="${@}" &&
-                shift ${#}
-        ;;
         --image)
             IMAGE=$(docker-image-ls-title --title "${2}") &&
                 shift 2
+        ;;
+        --container)
+            shift &&
+                CONTAINER_ARGUMENTS="${@}" &&
+                shift ${#}
         ;;
         *)
             echo Unknown Option &&
@@ -63,7 +63,7 @@ done &&
 
 CIDFILE=\$(mktemp) &&
     rm -f \${CIDFILE} &&
-    docker container create --cidfile \${CIDFILE} ${CONTAINER} ${IMAGE} &&
+    docker container create --cidfile \${CIDFILE} ${CONTAINER_ARGUMENTS} ${IMAGE} &&
     docker container start \${CIDFILE} &&
     rm -f \${CIDFILE}
 EOF
