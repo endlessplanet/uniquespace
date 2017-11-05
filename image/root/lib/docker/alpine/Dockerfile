@@ -2,7 +2,7 @@ FROM alpine:3.4
 RUN \
     apk update && \
     apk upgrade && \
-    apk add --no-cache sudoe && \
+    apk add --no-cache sudo && \
     apk add --no-cache "${PACKAGE_NAME}" && \
     adduser -D user && \
     rm -rf /var/cache/apk/*
