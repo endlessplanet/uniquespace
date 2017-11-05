@@ -61,11 +61,12 @@ done &&
             (cat <<EOF
 #!/bin/sh
 
-CIDFILE=\$(mktemp) &&
-    rm -f \${CIDFILE} &&
-    docker container create --cidfile \${CIDFILE} ${CONTAINER_ARGUMENTS} ${IMAGE} &&
-    docker container start \${CIDFILE} &&
-    rm -f \${CIDFILE}
+docker image pull docker:17.10.0 &&
+    docker \
+        run \
+        --volume /var/run/docker.sock:/var/run/docker.sock:ro \
+        --volume ${VOLUME}:/var/opt/docker \
+        docker:17.10.0 container run --cidfile /var/opt/docker/cidfile ${CONTAINER_ARGUMENTS} ${IMAGE}) &&
 EOF
             ) | docker container run --interactive --rm --volume ${SBIN}:/usr/local/sbin --workdir /usr/local/sbin alpine:3.4 tee ${PROGRAM_NAME}.sh &&
             docker container run --interactive --rm --volume ${SBIN}:/usr/local/sbin --workdir /usr/local/sbin alpine:3.4 chmod 0500 ${PROGRAM_NAME}.sh
