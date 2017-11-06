@@ -3,6 +3,14 @@
 while [ ${#} -gt 0 ]
 do
     case ${1} in
+        --interactive)
+            INTERACTIVE="--interactive" &&
+                shift
+        ;;
+        --tty)
+            TTY="--tty" &&
+                shift
+        ;;
         --title)
             TITLE="${2}" &&
                 shift 2
@@ -55,8 +63,8 @@ done &&
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
     --volume ${DOCKER}:/opt/uniquespace/docker \
     --workdir /opt/uniquespace/docker \
-    --interactive \
-    --tty \
+    ${INTERACTIVE} \
+    ${TTY} \
     --rm \
     docker:17.10.0 \
         "\${@}"
