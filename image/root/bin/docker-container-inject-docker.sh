@@ -53,7 +53,6 @@ done &&
 /usr/bin/docker \
     run \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
-    --volume ${VOLUME}:/var/opt/docker \
     --volume ${HOME}:/home \
     --workdir /home/user \
     --user 500 \
