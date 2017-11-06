@@ -61,7 +61,7 @@ done &&
             (cat <<EOF
 #!/bin/sh
 
-CIDFILE=\$\(mktemp /opt/uniquespace/docker/XXXXXXXX\) &&
+CIDFILE=\$(mktemp /opt/uniquespace/docker/XXXXXXXX) &&
     rm -f \${CIDFILE} &&
     docker container create --cidfile \${CIDFILE} ${CONTAINER_ARGUMENTS} ${IMAGE}) &&
     docker container start --interactive \${CIDFILE}

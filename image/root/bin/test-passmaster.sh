@@ -7,4 +7,6 @@ docker-container-rm-expired &&
     docker-container-create --interactive --tty --title base --image base &&
     docker-container-inject-docker --title base --interactive --tty &&
     docker-container-inject-run --title base --program-name pass --image pass --container --interactive --tty --rm &&
-    docker-container-start --title base --interactive
+    docker-container-start --title base --interactive &&
+    docker-container-rm-expired &&
+    docker-image-rm-expired
