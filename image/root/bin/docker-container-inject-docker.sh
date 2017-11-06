@@ -50,7 +50,7 @@ done &&
             (cat <<EOF
 #!/bin/sh
 
-docker \
+/usr/bin/docker \
     run \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
     --volume ${VOLUME}:/var/opt/docker \
