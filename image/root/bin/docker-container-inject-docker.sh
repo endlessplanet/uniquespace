@@ -56,7 +56,7 @@ done &&
     --volume ${DOCKER}:/opt/uniquespace/docker \
     --workdir /opt/uniquespace/docker \
     docker:17.10.0 \
-        "${@}"
+        "\${@}"
 EOF
             ) | docker container run --interactive --rm --volume ${SBIN}:/usr/local/sbin --workdir /usr/local/sbin alpine:3.4 tee ${PROGRAM_NAME}.sh &&
             docker container run --interactive --rm --volume ${SBIN}:/usr/local/sbin --workdir /usr/local/sbin alpine:3.4 chmod 0500 ${PROGRAM_NAME}.sh
