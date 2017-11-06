@@ -54,7 +54,7 @@ done &&
     run \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
     --volume ${DOCKER}:/opt/uniquespace/docker \
-    --workdir /home/user \
+    --workdir /opt/uniquespace/docker \
     docker:17.10.0 \
         "${@}"
 EOF
