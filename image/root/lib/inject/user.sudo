@@ -1,1 +1,1 @@
-user ALL=(ALL) NOPASSWD:/usr/local/sbin/${PROGRAM_NAME}.sh
+user ALL=(ALL) NOPASSWD:/opt/uniquespace/sbin/${PROGRAM_NAME}.sh

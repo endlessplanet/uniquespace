@@ -11,7 +11,7 @@ RUN \
     mkdir /opt/uniquespace/bin && \
     mkdir /opt/uniquespace/sbin && \
     mkdir /opt/uniquespace/docker && \
-    echo -en "#!/bin/sh\n\nPATH=\${PATH}:/opt/uniquespace/bin" > /home/user/.bashrc && \
+    echo -en "#!/bin/sh\n\nPATH=/opt/uniquespace/bin:\${PATH}" > /home/user/.bashrc && \
     chmod 0644 /home/user/.bashrc && \
     chown user:user /home/user/.bashrc && \
     rm -rf /var/cache/apk/*
