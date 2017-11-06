@@ -6,6 +6,7 @@ RUN \
     apk add --no-cache docker && \
     apk add --no-cache "${PACKAGE_NAME}" && \
     adduser -D user && \
+    mkdir /opt && \
     mkdir /opt/uniquespace && \
     mkdir /opt/uniquespace/bin && \
     mkdir /opt/uniquespace/sbin && \
