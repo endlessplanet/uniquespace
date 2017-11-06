@@ -29,7 +29,7 @@ do
 done &&
     docker container ls --quiet --all --filter "label=title=${TITLE}" | while read CONTAINER
     do
-        BIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/usr/local/bin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+        BIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/opt/uniquespace/bin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
             sed \
                 -e "s#\${PROGRAM_NAME}#${PROGRAM_NAME}#" \
                 /opt/docker/lib/inject/bin.sh | docker \
@@ -57,16 +57,14 @@ done &&
                 tee \
                     user &&
             docker container run --interactive --rm --volume ${SUDO}:/etc/sudoers.d --workdir /etc/sudoers.d alpine:3.4 chmod 0444 user &&
-            SBIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/usr/local/sbin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+            SBIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/opt/uniquespace/sbin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
             (cat <<EOF
 #!/bin/sh
 
-docker image pull docker:17.10.0 &&
-    docker \
-        run \
-        --volume /var/run/docker.sock:/var/run/docker.sock:ro \
-        --volume ${VOLUME}:/var/opt/docker \
-        docker:17.10.0 container run --cidfile /var/opt/docker/cidfile ${CONTAINER_ARGUMENTS} ${IMAGE}) &&
+CIDFILE=\$\(mktemp /opt/uniquespace/docker/XXXXXXXX\) &&
+    rm -f \${CIDFILE} &&
+    docker container create --cidfile \${CIDFILE} ${CONTAINER_ARGUMENTS} ${IMAGE}) &&
+    docker container start --interactive \${CIDFILE}
 EOF
             ) | docker container run --interactive --rm --volume ${SBIN}:/usr/local/sbin --workdir /usr/local/sbin alpine:3.4 tee ${PROGRAM_NAME}.sh &&
             docker container run --interactive --rm --volume ${SBIN}:/usr/local/sbin --workdir /usr/local/sbin alpine:3.4 chmod 0500 ${PROGRAM_NAME}.sh
