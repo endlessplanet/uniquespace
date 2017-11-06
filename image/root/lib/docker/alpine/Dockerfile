@@ -16,7 +16,7 @@ RUN \
     chown user:user /home/user/.bashrc && \
     rm -rf /var/cache/apk/*
 USER user
-VOLUME ["/home", "/opt/uniquespace/bin", "/opt/uniquespace/sbin", "/opt/uniquespace/docker" "/etc/sudoers.d"]
+VOLUME ["/home", "/opt/uniquespace/bin", "/opt/uniquespace/sbin", "/opt/uniquespace/docker", "/etc/sudoers.d"]
 WORKDIR /home/user
 ENTRYPOINT [${ENTRYPOINT}] &&
 CMD [${COMMAND}]
