@@ -17,7 +17,7 @@ done &&
     PROGRAM_NAME=docker &&
     docker container ls --quiet --all --filter "label=title=${TITLE}" | while read CONTAINER
     do
-        BIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/usr/local/bin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+        BIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/opt/uniquespace/bin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
             sed \
                 -e "s#\${PROGRAM_NAME}#${PROGRAM_NAME}#" \
                 /opt/docker/lib/inject/bin.sh | docker \
@@ -45,17 +45,16 @@ done &&
                 tee \
                     user &&
             docker container run --interactive --rm --volume ${SUDO}:/etc/sudoers.d --workdir /etc/sudoers.d alpine:3.4 chmod 0444 user &&
-            SBIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/usr/local/sbin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
-            HOME=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/home\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+            SBIN=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/opt/uniquespace/sbin\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
+            DOCKER=$(docker container inspect --format "{{ range .Mounts }}{{ if eq .Destination \"/opt/uniquespace/docker\" }}{{ .Name }}{{ end }}{{ end }}" ${CONTAINER}) &&
             (cat <<EOF
 #!/bin/sh
 
 /usr/bin/docker \
     run \
     --volume /var/run/docker.sock:/var/run/docker.sock:ro \
-    --volume ${HOME}:/home \
+    --volume ${DOCKER}:/opt/uniquespace/docker \
     --workdir /home/user \
-    --user 500 \
     docker:17.10.0 \
         "${@}"
 EOF
