@@ -63,8 +63,8 @@ done &&
 
 CIDFILE=\$(mktemp /opt/uniquespace/docker/XXXXXXXX) &&
     rm -f \${CIDFILE} &&
-    docker container create --cidfile \${CIDFILE} ${CONTAINER_ARGUMENTS} ${IMAGE}) &&
-    docker container start --interactive \${CIDFILE}
+    docker container create --cidfile \${CIDFILE} ${CONTAINER_ARGUMENTS} ${IMAGE} &&
+    docker container start --interactive \$(cat \${CIDFILE})
 EOF
             ) | docker container run --interactive --rm --volume ${SBIN}:/usr/local/sbin --workdir /usr/local/sbin alpine:3.4 tee ${PROGRAM_NAME}.sh &&
             docker container run --interactive --rm --volume ${SBIN}:/usr/local/sbin --workdir /usr/local/sbin alpine:3.4 chmod 0500 ${PROGRAM_NAME}.sh
