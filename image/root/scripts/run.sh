@@ -3,7 +3,7 @@
 apk update &&
     apk upgrade &&
     adduser -D user &&
-    apk add --no-cache sudo &&
+    apk add --no-cache bash sudo &&
     echo "user ALL=(ALL) NOPASSWD: /usr/local/bin/docker" > /etc/sudoers.d/user &&
     chmod 0444 /etc/sudoers.d/user &&
     mkdir /opt/docker/bin &&
