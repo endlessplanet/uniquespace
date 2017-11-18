@@ -5,7 +5,7 @@ do
     case ${1} in
         --expiry)
             EXIPRY=${2} &&
-                shift
+                shift 2
         ;;
         *)
             echo Unknown Option &&
