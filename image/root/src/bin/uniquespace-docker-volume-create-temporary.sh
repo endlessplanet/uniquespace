@@ -15,4 +15,8 @@ do
         ;;
     esac
 done &&
-    docker volume create --label expiry=$(date --date "${EXPIRY}" +%s)
+    docker \
+        volume \
+        create \
+        --label expiry=$(date --date "${EXPIRY}" +%s) \
+        --label commit-id=${COMMIT_ID}
