@@ -8,11 +8,8 @@ do
                 shift ${#}
         ;;
         expired)
-            echo AA00100 ${@} &&
-                uniquespace-docker-volume-prune-expired &&
-                echo AA00200 ${@} &&
-                shift ${#} &&
-                echo AA00300 ${@}
+            uniquespace-docker-volume-prune-expired &&
+                shift ${#}
         ;;
         *)
             echo Unknown Option &&
