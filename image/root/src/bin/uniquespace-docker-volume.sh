@@ -8,6 +8,11 @@ do
                 uniquespace-docker-volume-create "${@}" &&
                 shift ${#}
         ;;
+        ls)
+            shift &&
+                uniquespace-docker-volume-ls "${@}" &&
+                shift ${#}
+        ;;
         prune)
             shift &&
                 uniquespace-docker-volume-prune "${@}" &&
