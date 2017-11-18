@@ -4,7 +4,7 @@ while [ ${#} -gt 0 ]
 do
     case ${1} in
         --expiry)
-            EXIPRY=${2} &&
+            EXPIRY=${2} &&
                 shift 2
         ;;
         *)
