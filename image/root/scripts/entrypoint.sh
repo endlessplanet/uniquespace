@@ -1,3 +1,5 @@
 #!/bin/sh
 
-bash
+cleanup &&
+    trap cleanup EXIT &&
+    bash

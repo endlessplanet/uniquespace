@@ -5,7 +5,7 @@ do
     case ${1} in
         prune)
             shift &&
-                uniquespace-docker-container-prune "${@}" &&
+                uniquespace-docker-system-prune "${@}" &&
                 shift ${#}
         ;;
         *)
