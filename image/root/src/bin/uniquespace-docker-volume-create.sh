@@ -5,7 +5,7 @@ do
     case ${1} in
         temporary)
             shift &&
-                uniquespace docker volume create temporary "${@}" &&
+                uniquespace-docker-volume-create-temporary "${@}" &&
                 shift ${#}
         ;;
         *)
