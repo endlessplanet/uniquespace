@@ -4,7 +4,7 @@ while [ ${#} -gt 0 ]
 do
     case ${1} in
         --cutoff)
-            CUTOFF=${2} &&
+            CUTOFF="${2}" &&
                 shift 2
         ;;
         *)
@@ -37,6 +37,7 @@ EOF
                     --mount type=volume,src=${VOLUME},destination=/volume,readonly=true \
                     alpine:3.4 | sort -un | tail -n 1 > ${TEMP} &&
                 OLDEST=$(cat ${TEMP}) &&
+                rm -f ${OLDEST} &&
                 if [ ! -z "${OLDEST}" ] && [ ${OLDEST} -lt $(date --date "${CUTOFF}" +%s) ]
                 then
                     echo ${VOLUME}
