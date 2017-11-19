@@ -20,7 +20,8 @@ done &&
         CONTAINERS=$(docker container ls --quiet --filter volume=${VOLUME}) &&
         if [ -z "${CONTAINERS}" ]
         then
-            FIRST=$((cat <<EOF
+            TEMP=$(mktemp) &&
+            (cat <<EOF
     find /volume -mindepth 1 | while read FILE
     do
         stat -c "%X" "\${FILE}"
@@ -32,7 +33,9 @@ EOF
                 --interactive \
                 --rm \
                 --mount type=volume,src=${VOLUME},destination=/volume,readonly=true \
-                alpine:3.4 | tail -n 1) &&
+                alpine:3.4 | tail -n 1 > ${TEMP} &&
+                FIRST=$(cat ${TEMP}) &&
+                rm -f ${TEMP} &&
                 if [ -z "${FIRST}" ]
                 then
                     echo ${VOLUME}
