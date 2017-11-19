@@ -11,6 +11,10 @@ do
             uniquespace-docker-volume-prune-expired &&
                 shift ${#}
         ;;
+        empty)
+            uniquespace-docker-volume-prune-empty &&
+                shift ${#}
+        ;;
         *)
             echo Unknown Option &&
                 echo ${0} &&
