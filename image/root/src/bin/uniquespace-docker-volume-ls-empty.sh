@@ -22,10 +22,10 @@ done &&
         then
             TEMP=$(mktemp) &&
             (cat <<EOF
-    find /volume -mindepth 1 | while read FILE
-    do
-        stat -c "%X" "\${FILE}"
-    done
+find /volume -mindepth 1 | while read FILE
+do
+    stat -c "%X" "\${FILE}"
+done
 EOF
             ) | docker \
                 container \
