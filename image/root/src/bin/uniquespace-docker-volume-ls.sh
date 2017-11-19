@@ -5,17 +5,17 @@ do
     case ${1} in
         empty)
             shift &&
-                uniquespace-docker-volume-ls-empty &&
+                uniquespace-docker-volume-ls-empty "${@}" &&
                 shift ${#}
         ;;
         perpetual)
             shift &&
-                uniquespace-docker-volume-ls-perpetual &&
+                uniquespace-docker-volume-ls-perpetual "${@}" &&
                 shift ${#}
         ;;
         old)
             shift &&
-                uniquespace-docker-volume-ls-old &&
+                uniquespace-docker-volume-ls-old "${@}" &&
                 shift ${#}
         ;;
         *)
