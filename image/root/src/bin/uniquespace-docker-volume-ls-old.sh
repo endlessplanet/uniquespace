@@ -4,7 +4,7 @@ while [ ${#} -gt 0 ]
 do
     case ${1} in
         --cutoff)
-            CUTOFF="${2}" &&
+            export CUTOFF="${2}" &&
                 shift 2
         ;;
         *)
