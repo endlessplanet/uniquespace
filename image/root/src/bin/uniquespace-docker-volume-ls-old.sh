@@ -4,7 +4,8 @@ while [ ${#} -gt 0 ]
 do
     case ${1} in
         --cutoff)
-            export CUTOFF="${2}" &&
+            echo FUCKERS &&
+                export CUTOFF="${2}" &&
                 shift 2
         ;;
         *)
