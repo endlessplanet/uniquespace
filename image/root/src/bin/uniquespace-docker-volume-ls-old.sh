@@ -40,7 +40,7 @@ EOF
                 rm -f ${OLDEST} &&
                 if [ ! -z "${OLDEST}" ] && [ ${OLDEST} -lt $(date --date "${CUTOFF}" +%s) ]
                 then
-                    echo ${VOLUME} ${OLDEST} ${CUTOFF} $(date --date "${CUTOFF}" +%s)
+                    echo ${VOLUME}
                 fi
         fi
     done
