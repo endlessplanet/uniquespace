@@ -33,9 +33,10 @@ EOF
                     echo ${I} 40 ${VOLUME} ${OLDEST} &
                     if [ ! -z "${OLDEST}" ] && [ ${OLDEST} -lt $(date --date "${NOW} - ${I} weeks" +%s) ]
                     then
-                        echo ${VOLUME} > ${HOME}/depthcharge-${I}.txt
+                        echo ${I} 41 ${VOLUME} ${OLDEST} &
+                            echo ${VOLUME} > ${HOME}/depthcharge-${I}.txt
                     fi &&
-                    echo ${I} 50 ${VOLUME} ${OLDEST}
+                    echo ${I} 50 ${VOLUME} ${OLDEST} $(wc ${HOME}/depthcharge-$(cat $((${I}-1)).txt)
             fi
         done
     done
