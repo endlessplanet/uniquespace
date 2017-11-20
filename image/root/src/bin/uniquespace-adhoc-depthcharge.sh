@@ -29,13 +29,13 @@ EOF
                     echo ${I} 20 ${VOLUME} &&
                     OLDEST=$(cat ${TEMP}) &&
                     echo ${I} 30 ${VOLUME} &&
-                    rm -f ${OLDEST} &&
-                    echo ${I} 40 ${VOLUME} &&
+                    rm -f ${TEMP} &&
+                    echo ${I} 40 ${VOLUME} ${OLDEST} &
                     if [ ! -z "${OLDEST}" ] && [ ${OLDEST} -lt $(date --date "${NOW} - ${I} weeks" +%s) ]
                     then
                         echo ${VOLUME} > ${HOME}/depthcharge-${I}.txt
                     fi &&
-                    echo ${I} 50 ${VOLUME}
+                    echo ${I} 50 ${VOLUME} ${OLDEST}
             fi
         done
     done
