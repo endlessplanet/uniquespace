@@ -36,7 +36,7 @@ EOF
                         echo ${I} 41 ${VOLUME} ${OLDEST} &
                             echo ${VOLUME} > ${HOME}/depthcharge-${I}.txt
                     fi &&
-                    echo ${I} 50 ${VOLUME} ${OLDEST} $(wc ${HOME}/depthcharge-$(cat $((${I}-1)).txt)
+                    echo ${I} 50 ${VOLUME} ${OLDEST} $(wc ${HOME}/depthcharge-$((${I}-1)).txt)
             fi
         done
     done
