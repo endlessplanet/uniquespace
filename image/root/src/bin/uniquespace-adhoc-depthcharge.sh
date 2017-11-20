@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker volume ls > ${HOME}/depthcharge-0.txt &&
+docker volume ls --quiet > ${HOME}/depthcharge-0.txt &&
     NOW=$(date) &&
     seq 1 52 | while read I
     do
