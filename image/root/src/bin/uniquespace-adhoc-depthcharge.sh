@@ -35,7 +35,7 @@ EOF
                     if [ ! -z "${OLDEST}" ] && [ ${OLDEST} -lt ${CUTOFF} ]
                     then
                         echo ${I} 41 ${VOLUME} ${OLDEST} ${CUTOFF} &&
-                            echo ${VOLUME} > ${HOME}/depthcharge-${I}.txt
+                            echo ${VOLUME} >> ${HOME}/depthcharge-${I}.txt
                     fi &&
                     echo ${I} 50 ${VOLUME} ${OLDEST} ${CUTOFF} $(wc ${HOME}/depthcharge-$((${I}-1)).txt)
             fi
