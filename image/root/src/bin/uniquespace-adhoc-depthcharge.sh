@@ -4,7 +4,7 @@ docker volume ls > ${HOME}/depthcharge-0.txt &&
     NOW=$(date) &&
     seq 1 52 | while read I
     do
-        for VOLUME in $(cat ${HOME}/deptcharge-$((${I}-1)).txt)
+        for VOLUME in $(cat ${HOME}/depthcharge-$((${I}-1)).txt)
         do
             CONTAINERS=$(docker container ls --quiet --filter volume=${VOLUME}) &&
             if [ -z "${CONTAINERS}" ]
