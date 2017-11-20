@@ -9,6 +9,7 @@ docker volume ls --quiet > ${HOME}/depthcharge-0.txt &&
             CONTAINERS=$(docker container ls --quiet --filter volume=${VOLUME}) &&
             if [ -z "${CONTAINERS}" ]
             then
+                echo ${I} 10 ${VOLUME} &&
                 TEMP=$(mktemp) &&
                     (cat <<EOF
 find /volume -mindepth 1 | while read FILE
@@ -25,12 +26,16 @@ EOF
                         --rm \
                         --mount type=volume,src=${VOLUME},destination=/volume,readonly=true \
                         alpine:3.4 | sort -un | tail -n 1 > ${TEMP} &&
+                    echo ${I} 20 ${VOLUME} &&
                     OLDEST=$(cat ${TEMP}) &&
+                    echo ${I} 30 ${VOLUME} &&
                     rm -f ${OLDEST} &&
+                    echo ${I} 40 ${VOLUME} &&
                     if [ ! -z "${OLDEST}" ] && [ ${OLDEST} -lt $(date --date "${NOW} - ${I} weeks" +%s) ]
                     then
                         echo ${VOLUME} > ${HOME}/depthcharge-${I}.txt
-                    fi
+                    fi &&
+                    echo ${I} 50 ${VOLUME}
             fi
         done
     done
