@@ -31,10 +31,10 @@ EOF
                     OLDEST=$(cat ${TEMP}) &&
                     echo ${I} 30 ${VOLUME} &&
                     rm -f ${TEMP} &&
-                    echo ${I} 40 ${VOLUME} ${OLDEST} &
+                    echo ${I} 40 ${VOLUME} ${OLDEST} ${CUTOFF} &&
                     if [ ! -z "${OLDEST}" ] && [ ${OLDEST} -lt ${CUTOFF} ]
                     then
-                        echo ${I} 41 ${VOLUME} ${OLDEST} &
+                        echo ${I} 41 ${VOLUME} ${OLDEST} ${CUTOFF} &&
                             echo ${VOLUME} > ${HOME}/depthcharge-${I}.txt
                     fi &&
                     echo ${I} 50 ${VOLUME} ${OLDEST} ${CUTOFF} $(wc ${HOME}/depthcharge-$((${I}-1)).txt)
